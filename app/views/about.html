@@ -1,0 +1,46 @@
+<div class="jumbotron" style="width: 100%;height: 100%">
+  
+
+  <div class="container" style="border: 2px solid black; background-color: #ffffff">
+  <br><br>
+     <div>
+        <div class="row">
+        <div class=" col-sm-6">
+         <label>Name of City</label>
+            <select  class="form-control"  ng-model = "city" ng-change="change(city)" >
+              <option ng-repeat="city in cities" >{{city}}</option>
+            </select> 
+            </div>
+          <div class="col-sm-6">
+          <label>Search Your Bank</label>
+        <input type="text" class="form-control" ng-model="name" placeholder="Enter Branch,Bank_name,IFSC_CODE">
+        </div>
+      </div>
+  
+    
+
+  <br>      
+  <table class="table table-bordered" style="border: 2px solid black">
+    <thead>
+      <tr>
+        <th>BANK NAME</th>
+        <th>BRANCH</th>
+        <th>ADDRESS</th>
+        <th>IFSC</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="x in data | filter: name">
+      <tr>
+        <td>{{x.bank_name}}</td>
+        <td>{{x.branch}}</td>
+        <td>{{x.address}}</td>
+        <td>{{x.ifsc}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+     </div>
+</div>
+  
+
+</div>
