@@ -9,6 +9,7 @@
 
 module.exports = function (grunt) {
  
+  var pkg = require('./package.json');
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
@@ -248,27 +249,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    cssmin: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {}
+    },
 
     imagemin: {
       dist: {
@@ -380,6 +381,33 @@ module.exports = function (grunt) {
         'svgmin'
       ]
     },
+    buildcontrol: {
+    options: {
+      dir: 'dist',
+      commit: true,
+      push: true,
+      message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+    },
+    pages: {
+      options: {
+        remote: 'git@github.com:virendra038/Fyle_test.git',
+        branch: 'gh-pages'
+      }
+    },
+    heroku: {
+      options: {
+        remote: 'git@heroku.com:example-heroku-webapp-1988.git',
+        branch: 'master',
+        tag: pkg.version
+      }
+    },
+    local: {
+      options: {
+        remote: '../',
+        branch: 'build'
+      }
+    }
+  },
 
     // Test settings
     karma: {
